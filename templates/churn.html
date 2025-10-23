@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <link rel="stylesjeet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Churn Prediction Form</title>
+    <style>
+        /* Add styling for the video container and video */
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        video {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Style the form container */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+            border-radius: 10px; /* Rounded corners for the form container */
+        }
+
+        /* Style form title */
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        /* Style form labels */
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        /* Style form input fields */
+        select, input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Style submit button */
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Video Background -->
+    <div class="video-container">
+        <video autoplay loop muted>
+            <source src="video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Form Container -->
+    <div class="container">
+     <!-- Signature -->
+    <div class="signature">
+        Mortadha FERCHICHI
+    </div>    
+        <h1>Churn Prediction Form</h1>
+        <!-- Your existing form fields go here -->
+        <form action="/predict" method="post">
+         <form action="http://localhost:5000/" method="POST">
+            <!-- ... (your form fields) ... -->
+             <!-- Gender -->
+             <label for="gender">Gender:</label>
+             <select id="gender" name="gender">
+                 <option value="male">Male</option>
+                 <option value="female">Female</option>
+             </select>
+             
+             <!-- Contract -->
+             <label for="Contract">Contract:</label>
+             <select id="Contract" name="Contract">
+                 <option value="One year">One year</option>
+                 <option value="Month-to-month">Month-to-month</option>
+                 <option value="Two year">Two year</option>
+             </select>
+             
+             <!-- International Plan -->
+             <label for="InternationalPlan">International Plan:</label>
+             <select id="InternationalPlan" name="InternationalPlan">
+                 <option value="Yes">Yes</option>
+                 <option value="No">No</option>
+             </select>
+             
+             <!-- Voice Mail Plan -->
+             <label for="VoiceMailPlan">Voice Mail Plan:</label>
+             <select id="VoiceMailPlan" name="VoiceMailPlan">
+                 <option value="yes">Yes</option>
+                 <option value="No">No</option>
+             </select>
+             
+
+             <!-- First Field: Internet Service -->
+             <label for="InternetService">Internet Service:</label>
+             <select id="InternetService" name="InternetService" onchange="updateAdditionalOptions()">
+                 <option value="No">No</option>
+                 <option value="DSL">DSL</option>
+                 <option value="Fiber optic">Fiber Optic</option>
+             </select>
+             
+             <!-- Second Field: Online Security -->
+             <label for="OnlineSecurity">Online Security:</label>
+             <select id="OnlineSecurity" name="OnlineSecurity">
+                 <!-- Options will be dynamically updated using JavaScript -->
+             </select>
+             
+             <!-- Third Field: Online Backup -->
+             <label for="OnlineBackup">Online Backup:</label>
+             <select id="OnlineBackup" name="OnlineBackup">
+                 <!-- Options will be dynamically updated using JavaScript -->
+             </select>
+             
+             <!-- Fourth Field: Device Protection -->
+             <label for="DeviceProtection">Device Protection:</label>
+             <select id="DeviceProtection" name="DeviceProtection">
+                 <!-- Options will be dynamically updated using JavaScript -->
+             </select>
+             
+             <!-- Fifth Field: Tech Support -->
+             <label for="TechSupport">Tech Support:</label>
+             <select id="TechSupport" name="TechSupport">
+                 <!-- Options will be dynamically updated using JavaScript -->
+             </select>
+             
+             <!-- Sixth Field: Streaming TV -->
+             <label for="StreamingTV">Streaming TV:</label>
+             <select id="StreamingTV" name="streamingTV">
+                 <!-- Options will be dynamically updated using JavaScript -->
+             </select>
+             
+             <!-- Seventh Field: Streaming Movies -->
+             <label for="StreamingMovies">Streaming Movies:</label>
+             <select id="StreamingMovies" name="streamingMovies">
+                 <!-- Options will be dynamically updated using JavaScript -->
+             </select>
+             
+             <script>
+             function updateAdditionalOptions() {
+                 // Get the selected option from the first field
+                 var selectedOption = document.getElementById("InternetService").value;
+                 
+                 // Get the additional option fields
+                 var additionalOptions = [
+                     "OnlineSecurity", "OnlineBackup", "DeviceProtection", "TechSupport", "StreamingTV", "StreamingMovies"
+                 ];
+                 
+                 // Iterate through the additional option fields
+                 for (var i = 0; i < additionalOptions.length; i++) {
+                     var fieldName = additionalOptions[i];
+                     var fieldElement = document.getElementById(fieldName);
+                     
+                     // Clear existing options in the field
+                     fieldElement.innerHTML = "";
+                     
+                     // Add options to the field based on the selection in the first field
+                     if (selectedOption === "DSL" || selectedOption === "Fiber optic") {
+                         // If DSL or Fiber is selected, add "Yes" and "No" options to the field
+                         var optionYes = document.createElement("option");
+                         optionYes.value = "Yes";
+                         optionYes.text = "Yes";
+                         fieldElement.appendChild(optionYes);
+             
+                         var optionNo = document.createElement("option");
+                         optionNo.value = "No";
+                         optionNo.text = "No";
+                         fieldElement.appendChild(optionNo);
+                     } else {
+                         // If "No" is selected, add a default option to the field
+                         var optionDefault = document.createElement("option");
+                         optionDefault.value = "No Internet Service";
+                         optionDefault.text = "No Internet Service";
+                         fieldElement.appendChild(optionDefault);
+                     }
+                 }
+             }
+             
+             // Initial update when the page loads
+             updateAdditionalOptions();
+             
+             
+             </script>
+              <form onsubmit="return validateForm()">
+                  <!-- Float Number Fields -->
+                  <label for="totalNightMinutes">Total Night Minutes:</label>
+                  <input type="number" step="0.01" id="totalNightMinutes" name="totalNightMinutes" placeholder="Enter Total Night Minutes" required min="0">
+
+                  <label for="totalDayMinutes">Total Day Minutes:</label>
+                  <input type="number" step="0.01" id="totalDayMinutes" name="totalDayMinutes" placeholder="Enter Total Day Minutes " required min="0">
+
+                  <label for="totalIntlMinutes">Total Intl Minutes:</label>
+                  <input type="number" step="0.01" id="totalIntlMinutes" name="totalIntlMinutes" placeholder="Enter Total Intl Minutes " required min="0">
+
+                  <label for="totalEveMinutes">Total Eve Minutes:</label>
+                  <input type="number" step="0.01" id="totalEveMinutes" name="totalEveMinutes" placeholder="Enter Total Eve Minutes " required min="0">
+
+                  <label for="totalRevenue">Total Revenue:</label>
+                  <input type="number" step="0.01" id="totalRevenue" name="totalRevenue" placeholder="Enter Total Revenue " required min="0">
+
+                 <!-- Integer Number Fields -->
+          <label for="totalNightCalls">Total Night Calls:</label>
+          <input type="number" step="1" id="totalNightCalls" name="totalNightCalls" placeholder="Enter Total Night Calls " required min="0">
+
+          <label for="numbervMailMessages">Numberv Mail Messages:</label>
+          <input type="number" step="1" id="numbervMailMessages" name="numbervMailMessages" placeholder="Enter Numberv Mail Messages" required min="0">
+
+          <label for="customerServiceCalls">Customer Service Calls:</label>
+          <input type="number" step="1" id="customerServiceCalls" name="customerServiceCalls" placeholder="Enter Customer Service Calls" required min="0">
+
+            
+                  <!-- Error Messages -->
+                  <div class="error" id="errorMessage"></div>
+                  
+                     <!-- Submit Button -->
+                     <button type="submit">Predict Churn</button>
+              </form>
+
+              <script>
+                  function validateForm() {
+                      // Get input values
+                      var totalNightMinutes = parseFloat(document.getElementById("totalNightMinutes").value);
+                      var totalDayMinutes = parseFloat(document.getElementById("totalDayMinutes").value);
+                      var totalIntlMinutes = parseFloat(document.getElementById("totalIntlMinutes").value);
+                      var totalEveMinutes = parseFloat(document.getElementById("totalEveMinutes").value);
+                      var totalRevenue = parseFloat(document.getElementById("totalRevenue").value);
+                      var totalNightCalls = parseInt(document.getElementById("totalNightCalls").value);
+                      var numbervMailMessages = parseInt(document.getElementById("numbervMailMessages").value);
+                      var customerServiceCalls = parseInt(document.getElementById("customerServiceCalls").value);
+
+                      // Check if inputs are valid numbers
+                      if (
+                          isNaN(totalNightMinutes) || isNaN(totalDayMinutes) || isNaN(totalIntlMinutes) || isNaN(totalEveMinutes) || isNaN(totalRevenue) ||
+                          isNaN(totalNightCalls) || isNaN(numbervMailMessages) || isNaN(customerServiceCalls)
+                      ) {
+                          document.getElementById
+                       
+            <button type="submit">Predict Churn</button>
+        </form>
+         </form>
+    </div>
+</body>
+</html>
