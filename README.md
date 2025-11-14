@@ -36,7 +36,6 @@ The system combines **data analysis**, **machine learning**, and **web deploymen
 - ⚖️ Compare model performances and select the best-performing one. 
 
 - 🚀 Deploy the final model using Flask to provide real-time churn predictions via a simple web interface.
-- 
 
 ## 🧪 Model Performance
 
